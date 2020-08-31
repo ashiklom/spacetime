@@ -31,7 +31,8 @@ stConstruct = function(x, space, time, SpatialObj = NULL,
 		else
 			endTime = as.POSIXct(index(time))
 		attr(endTime, "tzone") = tzone(time)
-		return(STIDF(sp[time,], time, x[time, -c(si, ti), drop=FALSE], endTime))
+		itime <- as.integer(time)
+		return(STIDF(sp[time,], time, x[itime, -c(si, ti), drop=FALSE], endTime))
 	} else if (length(space) == 1 && length(time) == 1) {
 		# long format, space indicates index of SpatialObj:
 		stopifnot(!is.null(SpatialObj))

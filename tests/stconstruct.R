@@ -50,3 +50,27 @@ timesList = list(
 t = xts(1:2, as.Date(c("1974-01-01","1979-01-01")))
 nc.st = stConstruct(as(nc, "data.frame"), geometry(nc), timesList,
 	TimeObj = t)
+
+dat_df <- data.frame(
+  z = c(35, 42, 49, 47),
+  proc = "Tmax",
+  lat = c(39.35, 39.35, 40.1, 40.1),
+  lon = -81.43,
+  date = as.Date(c("1990-01-01", "1990-01-02", "1990-01-01", "1990-01-02"))
+)
+
+stobj <- spacetime::stConstruct(
+  x = dat_df,
+  space = c("lon", "lat"),
+  time = "date"
+)
+
+# Try with tibble
+if (requireNamespace("dplyr", quietly = TRUE)) {
+	dat_tib <- dplyr::as_tibble(dat_df)
+	stobj2 <- spacetime::stConstruct(
+		x = dat_tib,
+		space = c("lon", "lat"),
+		time = "date"
+	)
+}
