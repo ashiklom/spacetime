@@ -7,3 +7,4 @@ contribute.md
 ^\.Rproj\.user$
 \.travis\.yml
 ^docs$
+\.github
